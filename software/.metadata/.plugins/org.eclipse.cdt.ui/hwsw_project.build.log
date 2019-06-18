@@ -1,0 +1,6 @@
+21:28:41 **** Clean-only build of configuration Nios II for project hwsw_project ****
+make clean 
+[hwsw_project clean complete]
+
+21:28:44 Build Finished (took 2s.656ms)
+

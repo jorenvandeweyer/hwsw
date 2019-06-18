@@ -1,0 +1,90 @@
+!SESSION 2019-06-17 20:58:20.177 -----------------------------------------------
+eclipse.buildId=4.3.2.M20140221-1700
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization C:/intelfpga_lite/16.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization C:/intelfpga_lite/16.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-06-17 22:43:15.646
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-06-17 22:47:01.443
+!MESSAGE Indexed 'hwsw_project_bsp' (87 sources, 66 headers) in 7.17 sec: 1,338 declarations; 3,115 references; 118 unresolved inclusions; 6 syntax errors; 202 unresolved names (4.34%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-06-17 22:47:14.302
+!MESSAGE Indexed 'hwsw_project' (1 sources, 21 headers) in 0.11 sec: 983 declarations; 1,599 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0.00%)
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-17 23:11:35.213
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-17 23:11:37.151
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --go /cygdrive/z/repos/HWSW/project/software/hwsw_project/hwsw_project.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-17 23:13:24.869
+!MESSAGE Terminated Launch with connection: 10DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-17 23:13:25.572
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-06-17 23:13:28.441
+!MESSAGE Failed Executing: [nios2-download, '--cable=DE-SoC on localhost [USB-1]', --device=1, --instance=0, --stop] return code: 4, 'other error'
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-17 23:13:28.784
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --go /cygdrive/z/repos/HWSW/project/software/hwsw_project/hwsw_project.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-06-17 23:13:31.574
+!MESSAGE Failed Executing: [nios2-download, '--cable=DE-SoC on localhost [USB-1]', --device=1, --instance=0, --go, /cygdrive/z/repos/HWSW/project/software/hwsw_project/hwsw_project.elf] return code: 4, 'other error'
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-06-17 23:13:31.574
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 09:32:54.264
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 09:32:56.029
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --go /cygdrive/z/repos/HWSW/project/software/hwsw_project/hwsw_project.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 10:50:13.558
+!MESSAGE Terminated Launch with connection: 10DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 10:50:13.824
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 10:50:15.778
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --go /cygdrive/z/repos/HWSW/project/software/hwsw_project/hwsw_project.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 10:55:23.839
+!MESSAGE Terminated Launch with connection: 10DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 10:55:24.136
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 10:55:25.934
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --go /cygdrive/z/repos/HWSW/project/software/hwsw_project/hwsw_project.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 11:10:15.611
+!MESSAGE Terminated Launch with connection: 10DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 11:10:15.876
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 11:10:17.409
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --go /cygdrive/z/repos/HWSW/project/software/hwsw_project/hwsw_project.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-06-18 11:10:19.079
+!MESSAGE Failed Executing: [nios2-download, '--cable=DE-SoC on localhost [USB-1]', --device=1, --instance=0, --go, /cygdrive/z/repos/HWSW/project/software/hwsw_project/hwsw_project.elf] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 4 0 2019-06-18 11:10:19.079
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 11:11:16.111
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --stop]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-06-18 11:11:18.033
+!MESSAGE Executing: [C:/intelfpga_lite/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=1 --instance=0 --go /cygdrive/z/repos/HWSW/project/software/hwsw_project/hwsw_project.elf]
