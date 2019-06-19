@@ -1,12 +1,14 @@
-module gamecontrol(CLOCK_50, reset, VGA_R, VGA_G, VGA_B, VGA_HS, VGA_VS, VGA_CLOCK, VGA_SYNC_N, VGA_BLANK_N);
+module gamecontrol(CLOCK_50, reset, VGA_R, VGA_G, VGA_B, VGA_HS, VGA_VS, VGA_CLOCK, VGA_SYNC_N, VGA_BLANK_N, operation, data);
 
     input CLOCK_50, reset;
+
+    input [31:0] operation, data;
 
     output [7:0] VGA_R, VGA_G, VGA_B;
     output VGA_CLOCK, VGA_SYNC_N;
     output reg VGA_HS, VGA_VS, VGA_BLANK_N;
 
-	 wire [23:0] color;
+    wire [23:0] color;
 
     reg [7:0] red, green, blue;
 
@@ -34,15 +36,17 @@ module gamecontrol(CLOCK_50, reset, VGA_R, VGA_G, VGA_B, VGA_HS, VGA_VS, VGA_CLO
         .display_col(display_col),
         .display_row(display_row),
         .color(color),
+        .operation(operation),
+        .data(data)
     );
-						  
+
     always @(posedge clock) begin
         if (reset) begin
             red = 0; green = 0; blue = 255;
         end else begin
-				red = color[23:16];
-				green = color[15:8];
-				blue= color[7:0];
+            red = color[23:16];
+            green = color[15:8];
+            blue= color[7:0];
         end
     end
 

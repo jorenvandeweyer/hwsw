@@ -21,13 +21,11 @@
 
 int main() {
   alt_u32 value;
-  alt_u32 buttons;
 
   printf("Hello FPGA! \n");
 
   while(1) {
     value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
-    buttons = IORD_ALTERA_AVALON_PIO_DATA(BUTTONS_BASE);
     IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, value);
   }
 

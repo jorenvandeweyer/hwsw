@@ -26,7 +26,7 @@
    {
       datum baseAddress
       {
-         value = "135296";
+         value = "135328";
          type = "String";
       }
    }
@@ -38,6 +38,27 @@
          type = "int";
       }
    }
+   element data
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
+      }
+   }
+   element data.s1
+   {
+      datum baseAddress
+      {
+         value = "135296";
+         type = "String";
+      }
+   }
    element jtag_uart_0
    {
       datum _sortIndex
@@ -47,7 +68,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -55,7 +76,7 @@
    {
       datum baseAddress
       {
-         value = "135352";
+         value = "135336";
          type = "String";
       }
    }
@@ -68,7 +89,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -76,7 +97,7 @@
    {
       datum baseAddress
       {
-         value = "135312";
+         value = "135296";
          type = "String";
       }
    }
@@ -110,7 +131,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -119,6 +140,27 @@
       datum baseAddress
       {
          value = "65536";
+         type = "String";
+      }
+   }
+   element operation
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
+      }
+   }
+   element operation.s1
+   {
+      datum baseAddress
+      {
+         value = "135312";
          type = "String";
       }
    }
@@ -131,7 +173,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -139,7 +181,7 @@
    {
       datum baseAddress
       {
-         value = "135328";
+         value = "135312";
          type = "String";
       }
    }
@@ -173,7 +215,7 @@
       }
       datum sopceditor_expanded
       {
-         value = "0";
+         value = "1";
          type = "boolean";
       }
    }
@@ -206,29 +248,23 @@
  <parameter name="timeStamp" value="0" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
- <interface
-   name="buttons"
-   internal="buttons.external_connection"
-   type="conduit"
-   dir="end" />
+ <interface name="buttons" internal="buttons.external_connection" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
+ <interface name="data" internal="data.external_connection" />
  <interface
    name="leds"
    internal="leds.external_connection"
    type="conduit"
    dir="end" />
+ <interface name="operation" internal="operation.external_connection" />
  <interface name="resetn" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <interface
    name="switches"
    internal="switches.external_connection"
    type="conduit"
    dir="end" />
- <interface
-   name="uart_0_external"
-   internal="uart_0.external_connection"
-   type="conduit"
-   dir="end" />
- <module name="buttons" kind="altera_avalon_pio" version="16.1" enabled="1">
+ <interface name="uart_0_external" internal="uart_0.external_connection" />
+ <module name="buttons" kind="altera_avalon_pio" version="16.1" enabled="0">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
@@ -247,6 +283,20 @@
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module name="data" kind="altera_avalon_pio" version="16.1" enabled="0">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="32" />
  </module>
  <module
    name="jtag_uart_0"
@@ -295,7 +345,7 @@
   <parameter name="cpuReset" value="false" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="dataAddrWidth" value="18" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x10000' end='0x20000' /><slave name='nios2_qsys_0.jtag_debug_module' start='0x20800' end='0x21000' /><slave name='timer_0.s1' start='0x21040' end='0x21060' /><slave name='uart_0.s1' start='0x21060' end='0x21080' /><slave name='buttons.s1' start='0x21080' end='0x21090' /><slave name='leds.s1' start='0x21090' end='0x210A0' /><slave name='switches.s1' start='0x210A0' end='0x210B0' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x210B8' end='0x210C0' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x10000' end='0x20000' /><slave name='nios2_qsys_0.jtag_debug_module' start='0x20800' end='0x21000' /><slave name='timer_0.s1' start='0x21040' end='0x21060' /><slave name='leds.s1' start='0x21080' end='0x21090' /><slave name='switches.s1' start='0x21090' end='0x210A0' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x210A8' end='0x210B0' /></address-map>]]></parameter>
   <parameter name="dcache_bursts" value="false" />
   <parameter name="dcache_lineSize" value="32" />
   <parameter name="dcache_numTCDM" value="0" />
@@ -322,8 +372,8 @@
   <parameter name="icache_tagramBlockType" value="Automatic" />
   <parameter name="impl" value="Fast" />
   <parameter name="instAddrWidth" value="18" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x10000' end='0x20000' /><slave name='nios2_qsys_0.jtag_debug_module' start='0x20800' end='0x21000' /><slave name='timer_0.s1' start='0x21040' end='0x21060' /><slave name='uart_0.s1' start='0x21060' end='0x21080' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x210B8' end='0x210C0' /></address-map>]]></parameter>
-  <parameter name="internalIrqMaskSystemInfo" value="7" />
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x10000' end='0x20000' /><slave name='nios2_qsys_0.jtag_debug_module' start='0x20800' end='0x21000' /><slave name='timer_0.s1' start='0x21040' end='0x21060' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x210A8' end='0x210B0' /></address-map>]]></parameter>
+  <parameter name="internalIrqMaskSystemInfo" value="5" />
   <parameter name="manuallyAssignCpuID" value="true" />
   <parameter name="mmu_TLBMissExcOffset" value="0" />
   <parameter name="mmu_TLBMissExcSlave" value="None" />
@@ -444,6 +494,20 @@
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
  </module>
+ <module name="operation" kind="altera_avalon_pio" version="16.1" enabled="0">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="32" />
+ </module>
  <module name="switches" kind="altera_avalon_pio" version="16.1" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
@@ -470,7 +534,7 @@
   <parameter name="timeoutPulseOutput" value="false" />
   <parameter name="watchdogPulse" value="2" />
  </module>
- <module name="uart_0" kind="altera_avalon_uart" version="16.1" enabled="1">
+ <module name="uart_0" kind="altera_avalon_uart" version="16.1" enabled="0">
   <parameter name="baud" value="115200" />
   <parameter name="clockRate" value="50000000" />
   <parameter name="dataBits" value="8" />
@@ -492,7 +556,7 @@
    start="nios2_qsys_0.data_master"
    end="jtag_uart_0.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x000210b8" />
+  <parameter name="baseAddress" value="0x000210a8" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -537,7 +601,7 @@
    start="nios2_qsys_0.data_master"
    end="switches.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x000210a0" />
+  <parameter name="baseAddress" value="0x00021090" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -546,7 +610,7 @@
    start="nios2_qsys_0.data_master"
    end="leds.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00021090" />
+  <parameter name="baseAddress" value="0x00021080" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -554,6 +618,24 @@
    version="16.1"
    start="nios2_qsys_0.data_master"
    end="buttons.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x000210a0" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="nios2_qsys_0.data_master"
+   end="operation.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00021090" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="nios2_qsys_0.data_master"
+   end="data.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00021080" />
   <parameter name="defaultConnection" value="false" />
@@ -564,7 +646,7 @@
    start="nios2_qsys_0.instruction_master"
    end="jtag_uart_0.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x000210b8" />
+  <parameter name="baseAddress" value="0x000210a8" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -604,24 +686,19 @@
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="16.1" start="clk_0.clk" end="nios2_qsys_0.clk" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="jtag_uart_0.clk" />
- <connection kind="clock" version="16.1" start="clk_0.clk" end="uart_0.clk" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="timer_0.clk" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="leds.clk" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="switches.clk" />
  <connection kind="clock" version="16.1" start="clk_0.clk" end="buttons.clk" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="operation.clk" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="data.clk" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="jtag_uart_0.clk" />
+ <connection kind="clock" version="16.1" start="clk_0.clk" end="uart_0.clk" />
  <connection
    kind="clock"
    version="16.1"
    start="clk_0.clk"
    end="onchip_memory2_0.clk1" />
- <connection
-   kind="interrupt"
-   version="16.1"
-   start="nios2_qsys_0.d_irq"
-   end="jtag_uart_0.irq">
-  <parameter name="irqNumber" value="0" />
- </connection>
  <connection
    kind="interrupt"
    version="16.1"
@@ -637,10 +714,12 @@
   <parameter name="irqNumber" value="2" />
  </connection>
  <connection
-   kind="reset"
+   kind="interrupt"
    version="16.1"
-   start="clk_0.clk_reset"
-   end="jtag_uart_0.reset" />
+   start="nios2_qsys_0.d_irq"
+   end="jtag_uart_0.irq">
+  <parameter name="irqNumber" value="0" />
+ </connection>
  <connection
    kind="reset"
    version="16.1"
@@ -666,17 +745,23 @@
    kind="reset"
    version="16.1"
    start="clk_0.clk_reset"
+   end="operation.reset" />
+ <connection kind="reset" version="16.1" start="clk_0.clk_reset" end="data.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
+   end="jtag_uart_0.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="clk_0.clk_reset"
    end="onchip_memory2_0.reset1" />
  <connection
    kind="reset"
    version="16.1"
    start="clk_0.clk_reset"
    end="nios2_qsys_0.reset_n" />
- <connection
-   kind="reset"
-   version="16.1"
-   start="nios2_qsys_0.jtag_debug_module_reset"
-   end="jtag_uart_0.reset" />
  <connection
    kind="reset"
    version="16.1"
@@ -702,6 +787,21 @@
    version="16.1"
    start="nios2_qsys_0.jtag_debug_module_reset"
    end="buttons.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="nios2_qsys_0.jtag_debug_module_reset"
+   end="operation.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="nios2_qsys_0.jtag_debug_module_reset"
+   end="data.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="nios2_qsys_0.jtag_debug_module_reset"
+   end="jtag_uart_0.reset" />
  <connection
    kind="reset"
    version="16.1"

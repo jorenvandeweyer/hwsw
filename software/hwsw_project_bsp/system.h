@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_qsys_0' in SOPC Builder design 'nios'
  * SOPC Builder design path: ../../nios.sopcinfo
  *
- * Generated: Tue Jun 18 13:07:28 CEST 2019
+ * Generated: Wed Jun 19 13:34:05 CEST 2019
  */
 
 /*
@@ -131,7 +131,6 @@
 #define __ALTERA_AVALON_ONCHIP_MEMORY2
 #define __ALTERA_AVALON_PIO
 #define __ALTERA_AVALON_TIMER
-#define __ALTERA_AVALON_UART
 #define __ALTERA_NIOS2_QSYS
 
 
@@ -151,51 +150,24 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart_0"
-#define ALT_STDERR_BASE 0x210b8
+#define ALT_STDERR_BASE 0x210a8
 #define ALT_STDERR_DEV jtag_uart_0
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart_0"
-#define ALT_STDIN_BASE 0x210b8
+#define ALT_STDIN_BASE 0x210a8
 #define ALT_STDIN_DEV jtag_uart_0
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart_0"
-#define ALT_STDOUT_BASE 0x210b8
+#define ALT_STDOUT_BASE 0x210a8
 #define ALT_STDOUT_DEV jtag_uart_0
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
 #define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
 #define ALT_SYSTEM_NAME "nios"
-
-
-/*
- * buttons configuration
- *
- */
-
-#define ALT_MODULE_CLASS_buttons altera_avalon_pio
-#define BUTTONS_BASE 0x21080
-#define BUTTONS_BIT_CLEARING_EDGE_REGISTER 0
-#define BUTTONS_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define BUTTONS_CAPTURE 0
-#define BUTTONS_DATA_WIDTH 4
-#define BUTTONS_DO_TEST_BENCH_WIRING 0
-#define BUTTONS_DRIVEN_SIM_VALUE 0
-#define BUTTONS_EDGE_TYPE "NONE"
-#define BUTTONS_FREQ 50000000
-#define BUTTONS_HAS_IN 1
-#define BUTTONS_HAS_OUT 0
-#define BUTTONS_HAS_TRI 0
-#define BUTTONS_IRQ -1
-#define BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define BUTTONS_IRQ_TYPE "NONE"
-#define BUTTONS_NAME "/dev/buttons"
-#define BUTTONS_RESET_VALUE 0
-#define BUTTONS_SPAN 16
-#define BUTTONS_TYPE "altera_avalon_pio"
 
 
 /*
@@ -214,7 +186,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart_0 altera_avalon_jtag_uart
-#define JTAG_UART_0_BASE 0x210b8
+#define JTAG_UART_0_BASE 0x210a8
 #define JTAG_UART_0_IRQ 0
 #define JTAG_UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_0_NAME "/dev/jtag_uart_0"
@@ -232,7 +204,7 @@
  */
 
 #define ALT_MODULE_CLASS_leds altera_avalon_pio
-#define LEDS_BASE 0x21090
+#define LEDS_BASE 0x21080
 #define LEDS_BIT_CLEARING_EDGE_REGISTER 0
 #define LEDS_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LEDS_CAPTURE 0
@@ -288,7 +260,7 @@
  */
 
 #define ALT_MODULE_CLASS_switches altera_avalon_pio
-#define SWITCHES_BASE 0x210a0
+#define SWITCHES_BASE 0x21090
 #define SWITCHES_BIT_CLEARING_EDGE_REGISTER 0
 #define SWITCHES_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define SWITCHES_CAPTURE 0
@@ -333,30 +305,5 @@
 #define TIMER_0_TICKS_PER_SEC 1000
 #define TIMER_0_TIMEOUT_PULSE_OUTPUT 0
 #define TIMER_0_TYPE "altera_avalon_timer"
-
-
-/*
- * uart_0 configuration
- *
- */
-
-#define ALT_MODULE_CLASS_uart_0 altera_avalon_uart
-#define UART_0_BASE 0x21060
-#define UART_0_BAUD 115200
-#define UART_0_DATA_BITS 8
-#define UART_0_FIXED_BAUD 1
-#define UART_0_FREQ 50000000
-#define UART_0_IRQ 1
-#define UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
-#define UART_0_NAME "/dev/uart_0"
-#define UART_0_PARITY 'N'
-#define UART_0_SIM_CHAR_STREAM ""
-#define UART_0_SIM_TRUE_BAUD 0
-#define UART_0_SPAN 32
-#define UART_0_STOP_BITS 1
-#define UART_0_SYNC_REG_DEPTH 2
-#define UART_0_TYPE "altera_avalon_uart"
-#define UART_0_USE_CTS_RTS 0
-#define UART_0_USE_EOP_REGISTER 0
 
 #endif /* __SYSTEM_H_ */

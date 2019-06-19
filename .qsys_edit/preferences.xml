@@ -3,14 +3,13 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="127" />
+   <connections preferredWidth="143" />
    <irq preferredWidth="34" />
    <baseaddress preferredWidth="119" />
    <export preferredWidth="129" />
    <description preferredWidth="173" />
   </columns>
  </systemtable>
- <library
-   expandedCategories="Library/Processors and Peripherals/Peripherals,Library/Processors and Peripherals,Library,Project" />
- <window width="1446" height="867" x="0" y="0" />
+ <library expandedCategories="Project,Library" />
+ <window width="1440" height="860" x="0" y="0" />
 </preferences>
