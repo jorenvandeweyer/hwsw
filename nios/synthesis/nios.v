@@ -4,10 +4,15 @@
 
 `timescale 1 ps / 1 ps
 module nios (
-		input  wire       clk_clk,         //      clk.clk
-		output wire [7:0] leds_export,     //     leds.export
-		input  wire       resetn_reset_n,  //   resetn.reset_n
-		input  wire [7:0] switches_export  // switches.export
+		input  wire [3:0]  buttons_export,      //         buttons.export
+		input  wire        clk_clk,             //             clk.clk
+		output wire [31:0] data_export,         //            data.export
+		output wire [7:0]  leds_export,         //            leds.export
+		output wire [31:0] operation_export,    //       operation.export
+		input  wire        resetn_reset_n,      //          resetn.reset_n
+		input  wire [7:0]  switches_export,     //        switches.export
+		input  wire        uart_0_external_rxd, // uart_0_external.rxd
+		output wire        uart_0_external_txd  //                .txd
 	);
 
 	wire  [31:0] nios2_qsys_0_data_master_readdata;                            // mm_interconnect_0:nios2_qsys_0_data_master_readdata -> nios2_qsys_0:d_readdata
@@ -39,6 +44,25 @@ module nios (
 	wire   [3:0] mm_interconnect_0_nios2_qsys_0_jtag_debug_module_byteenable;  // mm_interconnect_0:nios2_qsys_0_jtag_debug_module_byteenable -> nios2_qsys_0:jtag_debug_module_byteenable
 	wire         mm_interconnect_0_nios2_qsys_0_jtag_debug_module_write;       // mm_interconnect_0:nios2_qsys_0_jtag_debug_module_write -> nios2_qsys_0:jtag_debug_module_write
 	wire  [31:0] mm_interconnect_0_nios2_qsys_0_jtag_debug_module_writedata;   // mm_interconnect_0:nios2_qsys_0_jtag_debug_module_writedata -> nios2_qsys_0:jtag_debug_module_writedata
+	wire         mm_interconnect_0_data_s1_chipselect;                         // mm_interconnect_0:data_s1_chipselect -> data:chipselect
+	wire  [31:0] mm_interconnect_0_data_s1_readdata;                           // data:readdata -> mm_interconnect_0:data_s1_readdata
+	wire   [1:0] mm_interconnect_0_data_s1_address;                            // mm_interconnect_0:data_s1_address -> data:address
+	wire         mm_interconnect_0_data_s1_write;                              // mm_interconnect_0:data_s1_write -> data:write_n
+	wire  [31:0] mm_interconnect_0_data_s1_writedata;                          // mm_interconnect_0:data_s1_writedata -> data:writedata
+	wire         mm_interconnect_0_operation_s1_chipselect;                    // mm_interconnect_0:operation_s1_chipselect -> operation:chipselect
+	wire  [31:0] mm_interconnect_0_operation_s1_readdata;                      // operation:readdata -> mm_interconnect_0:operation_s1_readdata
+	wire   [1:0] mm_interconnect_0_operation_s1_address;                       // mm_interconnect_0:operation_s1_address -> operation:address
+	wire         mm_interconnect_0_operation_s1_write;                         // mm_interconnect_0:operation_s1_write -> operation:write_n
+	wire  [31:0] mm_interconnect_0_operation_s1_writedata;                     // mm_interconnect_0:operation_s1_writedata -> operation:writedata
+	wire  [31:0] mm_interconnect_0_buttons_s1_readdata;                        // buttons:readdata -> mm_interconnect_0:buttons_s1_readdata
+	wire   [1:0] mm_interconnect_0_buttons_s1_address;                         // mm_interconnect_0:buttons_s1_address -> buttons:address
+	wire  [31:0] mm_interconnect_0_switches_s1_readdata;                       // switches:readdata -> mm_interconnect_0:switches_s1_readdata
+	wire   [1:0] mm_interconnect_0_switches_s1_address;                        // mm_interconnect_0:switches_s1_address -> switches:address
+	wire         mm_interconnect_0_leds_s1_chipselect;                         // mm_interconnect_0:leds_s1_chipselect -> leds:chipselect
+	wire  [31:0] mm_interconnect_0_leds_s1_readdata;                           // leds:readdata -> mm_interconnect_0:leds_s1_readdata
+	wire   [1:0] mm_interconnect_0_leds_s1_address;                            // mm_interconnect_0:leds_s1_address -> leds:address
+	wire         mm_interconnect_0_leds_s1_write;                              // mm_interconnect_0:leds_s1_write -> leds:write_n
+	wire  [31:0] mm_interconnect_0_leds_s1_writedata;                          // mm_interconnect_0:leds_s1_writedata -> leds:writedata
 	wire         mm_interconnect_0_onchip_memory2_0_s1_chipselect;             // mm_interconnect_0:onchip_memory2_0_s1_chipselect -> onchip_memory2_0:chipselect
 	wire  [31:0] mm_interconnect_0_onchip_memory2_0_s1_readdata;               // onchip_memory2_0:readdata -> mm_interconnect_0:onchip_memory2_0_s1_readdata
 	wire  [13:0] mm_interconnect_0_onchip_memory2_0_s1_address;                // mm_interconnect_0:onchip_memory2_0_s1_address -> onchip_memory2_0:address
@@ -51,19 +75,39 @@ module nios (
 	wire   [2:0] mm_interconnect_0_timer_0_s1_address;                         // mm_interconnect_0:timer_0_s1_address -> timer_0:address
 	wire         mm_interconnect_0_timer_0_s1_write;                           // mm_interconnect_0:timer_0_s1_write -> timer_0:write_n
 	wire  [15:0] mm_interconnect_0_timer_0_s1_writedata;                       // mm_interconnect_0:timer_0_s1_writedata -> timer_0:writedata
-	wire  [31:0] mm_interconnect_0_switches_s1_readdata;                       // switches:readdata -> mm_interconnect_0:switches_s1_readdata
-	wire   [1:0] mm_interconnect_0_switches_s1_address;                        // mm_interconnect_0:switches_s1_address -> switches:address
-	wire         mm_interconnect_0_leds_s1_chipselect;                         // mm_interconnect_0:leds_s1_chipselect -> leds:chipselect
-	wire  [31:0] mm_interconnect_0_leds_s1_readdata;                           // leds:readdata -> mm_interconnect_0:leds_s1_readdata
-	wire   [1:0] mm_interconnect_0_leds_s1_address;                            // mm_interconnect_0:leds_s1_address -> leds:address
-	wire         mm_interconnect_0_leds_s1_write;                              // mm_interconnect_0:leds_s1_write -> leds:write_n
-	wire  [31:0] mm_interconnect_0_leds_s1_writedata;                          // mm_interconnect_0:leds_s1_writedata -> leds:writedata
-	wire         irq_mapper_receiver0_irq;                                     // timer_0:irq -> irq_mapper:receiver0_irq
-	wire         irq_mapper_receiver1_irq;                                     // jtag_uart_0:av_irq -> irq_mapper:receiver1_irq
+	wire         mm_interconnect_0_uart_0_s1_chipselect;                       // mm_interconnect_0:uart_0_s1_chipselect -> uart_0:chipselect
+	wire  [15:0] mm_interconnect_0_uart_0_s1_readdata;                         // uart_0:readdata -> mm_interconnect_0:uart_0_s1_readdata
+	wire   [2:0] mm_interconnect_0_uart_0_s1_address;                          // mm_interconnect_0:uart_0_s1_address -> uart_0:address
+	wire         mm_interconnect_0_uart_0_s1_read;                             // mm_interconnect_0:uart_0_s1_read -> uart_0:read_n
+	wire         mm_interconnect_0_uart_0_s1_begintransfer;                    // mm_interconnect_0:uart_0_s1_begintransfer -> uart_0:begintransfer
+	wire         mm_interconnect_0_uart_0_s1_write;                            // mm_interconnect_0:uart_0_s1_write -> uart_0:write_n
+	wire  [15:0] mm_interconnect_0_uart_0_s1_writedata;                        // mm_interconnect_0:uart_0_s1_writedata -> uart_0:writedata
+	wire         irq_mapper_receiver0_irq;                                     // jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
+	wire         irq_mapper_receiver1_irq;                                     // timer_0:irq -> irq_mapper:receiver1_irq
+	wire         irq_mapper_receiver2_irq;                                     // uart_0:irq -> irq_mapper:receiver2_irq
 	wire  [31:0] nios2_qsys_0_d_irq_irq;                                       // irq_mapper:sender_irq -> nios2_qsys_0:d_irq
-	wire         rst_controller_reset_out_reset;                               // rst_controller:reset_out -> [irq_mapper:reset, jtag_uart_0:rst_n, leds:reset_n, mm_interconnect_0:nios2_qsys_0_reset_n_reset_bridge_in_reset_reset, nios2_qsys_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, switches:reset_n, timer_0:reset_n]
+	wire         rst_controller_reset_out_reset;                               // rst_controller:reset_out -> [buttons:reset_n, data:reset_n, irq_mapper:reset, jtag_uart_0:rst_n, leds:reset_n, mm_interconnect_0:nios2_qsys_0_reset_n_reset_bridge_in_reset_reset, nios2_qsys_0:reset_n, onchip_memory2_0:reset, operation:reset_n, rst_translator:in_reset, switches:reset_n, timer_0:reset_n, uart_0:reset_n]
 	wire         rst_controller_reset_out_reset_req;                           // rst_controller:reset_req -> [nios2_qsys_0:reset_req, onchip_memory2_0:reset_req, rst_translator:reset_req_in]
 	wire         nios2_qsys_0_jtag_debug_module_reset_reset;                   // nios2_qsys_0:jtag_debug_module_resetrequest -> rst_controller:reset_in1
+
+	nios_buttons buttons (
+		.clk      (clk_clk),                               //                 clk.clk
+		.reset_n  (~rst_controller_reset_out_reset),       //               reset.reset_n
+		.address  (mm_interconnect_0_buttons_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_buttons_s1_readdata), //                    .readdata
+		.in_port  (buttons_export)                         // external_connection.export
+	);
+
+	nios_data data (
+		.clk        (clk_clk),                              //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),      //               reset.reset_n
+		.address    (mm_interconnect_0_data_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_data_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_data_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_data_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_data_s1_readdata),   //                    .readdata
+		.out_port   (data_export)                           // external_connection.export
+	);
 
 	nios_jtag_uart_0 jtag_uart_0 (
 		.clk            (clk_clk),                                                     //               clk.clk
@@ -75,7 +119,7 @@ module nios (
 		.av_write_n     (~mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write),      //                  .write_n
 		.av_writedata   (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata),   //                  .writedata
 		.av_waitrequest (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_waitrequest), //                  .waitrequest
-		.av_irq         (irq_mapper_receiver1_irq)                                     //               irq.irq
+		.av_irq         (irq_mapper_receiver0_irq)                                     //               irq.irq
 	);
 
 	nios_leds leds (
@@ -134,6 +178,17 @@ module nios (
 		.freeze     (1'b0)                                              // (terminated)
 	);
 
+	nios_data operation (
+		.clk        (clk_clk),                                   //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),           //               reset.reset_n
+		.address    (mm_interconnect_0_operation_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_operation_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_operation_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_operation_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_operation_s1_readdata),   //                    .readdata
+		.out_port   (operation_export)                           // external_connection.export
+	);
+
 	nios_switches switches (
 		.clk      (clk_clk),                                //                 clk.clk
 		.reset_n  (~rst_controller_reset_out_reset),        //               reset.reset_n
@@ -150,7 +205,22 @@ module nios (
 		.readdata   (mm_interconnect_0_timer_0_s1_readdata),   //      .readdata
 		.chipselect (mm_interconnect_0_timer_0_s1_chipselect), //      .chipselect
 		.write_n    (~mm_interconnect_0_timer_0_s1_write),     //      .write_n
-		.irq        (irq_mapper_receiver0_irq)                 //   irq.irq
+		.irq        (irq_mapper_receiver1_irq)                 //   irq.irq
+	);
+
+	nios_uart_0 uart_0 (
+		.clk           (clk_clk),                                   //                 clk.clk
+		.reset_n       (~rst_controller_reset_out_reset),           //               reset.reset_n
+		.address       (mm_interconnect_0_uart_0_s1_address),       //                  s1.address
+		.begintransfer (mm_interconnect_0_uart_0_s1_begintransfer), //                    .begintransfer
+		.chipselect    (mm_interconnect_0_uart_0_s1_chipselect),    //                    .chipselect
+		.read_n        (~mm_interconnect_0_uart_0_s1_read),         //                    .read_n
+		.write_n       (~mm_interconnect_0_uart_0_s1_write),        //                    .write_n
+		.writedata     (mm_interconnect_0_uart_0_s1_writedata),     //                    .writedata
+		.readdata      (mm_interconnect_0_uart_0_s1_readdata),      //                    .readdata
+		.rxd           (uart_0_external_rxd),                       // external_connection.export
+		.txd           (uart_0_external_txd),                       //                    .export
+		.irq           (irq_mapper_receiver2_irq)                   //                 irq.irq
 	);
 
 	nios_mm_interconnect_0 mm_interconnect_0 (
@@ -170,6 +240,13 @@ module nios (
 		.nios2_qsys_0_instruction_master_read             (nios2_qsys_0_instruction_master_read),                         //                                           .read
 		.nios2_qsys_0_instruction_master_readdata         (nios2_qsys_0_instruction_master_readdata),                     //                                           .readdata
 		.nios2_qsys_0_instruction_master_readdatavalid    (nios2_qsys_0_instruction_master_readdatavalid),                //                                           .readdatavalid
+		.buttons_s1_address                               (mm_interconnect_0_buttons_s1_address),                         //                                 buttons_s1.address
+		.buttons_s1_readdata                              (mm_interconnect_0_buttons_s1_readdata),                        //                                           .readdata
+		.data_s1_address                                  (mm_interconnect_0_data_s1_address),                            //                                    data_s1.address
+		.data_s1_write                                    (mm_interconnect_0_data_s1_write),                              //                                           .write
+		.data_s1_readdata                                 (mm_interconnect_0_data_s1_readdata),                           //                                           .readdata
+		.data_s1_writedata                                (mm_interconnect_0_data_s1_writedata),                          //                                           .writedata
+		.data_s1_chipselect                               (mm_interconnect_0_data_s1_chipselect),                         //                                           .chipselect
 		.jtag_uart_0_avalon_jtag_slave_address            (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address),      //              jtag_uart_0_avalon_jtag_slave.address
 		.jtag_uart_0_avalon_jtag_slave_write              (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write),        //                                           .write
 		.jtag_uart_0_avalon_jtag_slave_read               (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read),         //                                           .read
@@ -197,13 +274,25 @@ module nios (
 		.onchip_memory2_0_s1_byteenable                   (mm_interconnect_0_onchip_memory2_0_s1_byteenable),             //                                           .byteenable
 		.onchip_memory2_0_s1_chipselect                   (mm_interconnect_0_onchip_memory2_0_s1_chipselect),             //                                           .chipselect
 		.onchip_memory2_0_s1_clken                        (mm_interconnect_0_onchip_memory2_0_s1_clken),                  //                                           .clken
+		.operation_s1_address                             (mm_interconnect_0_operation_s1_address),                       //                               operation_s1.address
+		.operation_s1_write                               (mm_interconnect_0_operation_s1_write),                         //                                           .write
+		.operation_s1_readdata                            (mm_interconnect_0_operation_s1_readdata),                      //                                           .readdata
+		.operation_s1_writedata                           (mm_interconnect_0_operation_s1_writedata),                     //                                           .writedata
+		.operation_s1_chipselect                          (mm_interconnect_0_operation_s1_chipselect),                    //                                           .chipselect
 		.switches_s1_address                              (mm_interconnect_0_switches_s1_address),                        //                                switches_s1.address
 		.switches_s1_readdata                             (mm_interconnect_0_switches_s1_readdata),                       //                                           .readdata
 		.timer_0_s1_address                               (mm_interconnect_0_timer_0_s1_address),                         //                                 timer_0_s1.address
 		.timer_0_s1_write                                 (mm_interconnect_0_timer_0_s1_write),                           //                                           .write
 		.timer_0_s1_readdata                              (mm_interconnect_0_timer_0_s1_readdata),                        //                                           .readdata
 		.timer_0_s1_writedata                             (mm_interconnect_0_timer_0_s1_writedata),                       //                                           .writedata
-		.timer_0_s1_chipselect                            (mm_interconnect_0_timer_0_s1_chipselect)                       //                                           .chipselect
+		.timer_0_s1_chipselect                            (mm_interconnect_0_timer_0_s1_chipselect),                      //                                           .chipselect
+		.uart_0_s1_address                                (mm_interconnect_0_uart_0_s1_address),                          //                                  uart_0_s1.address
+		.uart_0_s1_write                                  (mm_interconnect_0_uart_0_s1_write),                            //                                           .write
+		.uart_0_s1_read                                   (mm_interconnect_0_uart_0_s1_read),                             //                                           .read
+		.uart_0_s1_readdata                               (mm_interconnect_0_uart_0_s1_readdata),                         //                                           .readdata
+		.uart_0_s1_writedata                              (mm_interconnect_0_uart_0_s1_writedata),                        //                                           .writedata
+		.uart_0_s1_begintransfer                          (mm_interconnect_0_uart_0_s1_begintransfer),                    //                                           .begintransfer
+		.uart_0_s1_chipselect                             (mm_interconnect_0_uart_0_s1_chipselect)                        //                                           .chipselect
 	);
 
 	nios_irq_mapper irq_mapper (
@@ -211,6 +300,7 @@ module nios (
 		.reset         (rst_controller_reset_out_reset), // clk_reset.reset
 		.receiver0_irq (irq_mapper_receiver0_irq),       // receiver0.irq
 		.receiver1_irq (irq_mapper_receiver1_irq),       // receiver1.irq
+		.receiver2_irq (irq_mapper_receiver2_irq),       // receiver2.irq
 		.sender_irq    (nios2_qsys_0_d_irq_irq)          //    sender.irq
 	);
 

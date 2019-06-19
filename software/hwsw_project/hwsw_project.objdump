@@ -760,12 +760,12 @@ int main() {
    10224:	001030c0 	call	1030c <puts>
 
   while(1) {
-    value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
+    value = IORD_ALTERA_AVALON_PIO_DATA(0x00021090);
    10228:	008000b4 	movhi	r2,2
    1022c:	10842404 	addi	r2,r2,4240
    10230:	10800037 	ldwio	r2,0(r2)
    10234:	e0bfff15 	stw	r2,-4(fp)
-    IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, value);
+    IOWR_ALTERA_AVALON_PIO_DATA(0x00021080, value);
    10238:	e0ffff17 	ldw	r3,-4(fp)
    1023c:	008000b4 	movhi	r2,2
    10240:	10842004 	addi	r2,r2,4224

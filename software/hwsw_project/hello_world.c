@@ -25,8 +25,8 @@ int main() {
   printf("Hello FPGA! \n");
 
   while(1) {
-    value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
-    IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, value);
+    value = IORD_ALTERA_AVALON_PIO_DATA(0x00021090);
+    IOWR_ALTERA_AVALON_PIO_DATA(0x00021080, value);
   }
 
   return 0;

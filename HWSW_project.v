@@ -103,18 +103,18 @@ module HWSW_project(
 //  Structural coding
 //=======================================================
 
-// wire [31:0] operation, data;
+wire [31:0] operation, data;
 
 nios u0 (
-//  .uart_0_external_rxd (GPIO[0]), // uart_0_external.rxd
-//  .uart_0_external_txd (GPIO[1]), // .txd
+ .uart_0_external_rxd (GPIO[0]), // uart_0_external.rxd
+ .uart_0_external_txd (GPIO[1]), // .txd
  .resetn_reset_n (SW[9]), // reset.reset_n
  .clk_clk (CLOCK_50), // clk.clk
  .leds_export (LEDR[7:0]), // leds.export
  .switches_export (SW[7:0]), // switches.export
-//  .buttons_export (KEY[3:0]),
-//  .operation_export (operation),
-//  .data_export (data)
+ .buttons_export (KEY[3:0]),
+ .operation_export (operation),
+ .data_export (data)
 );
 
 gamecontrol gc (
@@ -128,8 +128,8 @@ gamecontrol gc (
 	.VGA_CLOCK(VGA_CLK),
 	.VGA_SYNC_N(VGA_SYNC_N),
 	.VGA_BLANK_N(VGA_BLANK_N),
-	// .operation(operation),
-	// .data(data)
+	.operation(operation),
+	.data(data)
 );
 
 endmodule

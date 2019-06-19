@@ -1,18 +1,9 @@
-13:35:01 **** Build of configuration Nios II for project hwsw_project ****
+14:02:52 **** Incremental Build of configuration Nios II for project hwsw_project ****
 make all 
 Info: Building ../hwsw_project_bsp/
 C:/intelFPGA_lite/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../hwsw_project_bsp/
 [BSP build complete]
-Info: Compiling hello_world.c to obj/default/hello_world.o
-nios2-elf-gcc -xc -MP -MMD -c -I../hwsw_project_bsp//HAL/inc -I../hwsw_project_bsp/ -I../hwsw_project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/hello_world.o hello_world.c
-Info: Linking hwsw_project.elf
-nios2-elf-g++  -T'../hwsw_project_bsp//linker.x' -msys-crt0='../hwsw_project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../hwsw_project_bsp/   -Wl,-Map=hwsw_project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o hwsw_project.elf obj/default/hello_world.o -lm -msys-lib=m
-nios2-elf-insert hwsw_project.elf --thread_model hal --cpu_name nios2_qsys_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name nios --quartus_project_dir "Z:/repos/HWSW/project" --jdi Z:/repos/HWSW/project/software/hwsw_project_bsp/../../HWSW_project.jdi --sopcinfo Z:/repos/HWSW/project/software/hwsw_project_bsp/../../nios.sopcinfo
-Info: (hwsw_project.elf) 22 KBytes program size (code + initialized data).
-Info:                    39 KBytes free for stack + heap.
-Info: Creating hwsw_project.objdump
-nios2-elf-objdump --disassemble --syms --all-header --source hwsw_project.elf >hwsw_project.objdump
 [hwsw_project build complete]
 
-13:35:06 Build Finished (took 4s.673ms)
+14:02:55 Build Finished (took 3s.265ms)
 
