@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(5CSEMA5F31) Path("Z:/repos/HWSW/project/") File("hwsw_project_time_limited.sof") MfrSpec(OpMask(1));
+		Device PartName(5CSEMA5F31) Path("Z:/repos/HWSW/project/") File("HWSW_project_time_limited.sof") MfrSpec(OpMask(1));
 	P ActionCode(Ign)
 		Device PartName(SOCVHPS) MfrSpec(OpMask(0));
 

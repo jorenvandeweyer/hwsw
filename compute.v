@@ -21,7 +21,7 @@ module compute(clock ,reset, display_col, display_row, color);
 
     sprites s(
         .clock(clock),
-        .rdaddress(),
+        .rdaddress(sprite_read_address),
         .q(sprite_read_data)
     );
 

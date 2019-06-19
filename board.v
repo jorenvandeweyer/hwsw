@@ -46,11 +46,11 @@ module board (
 	q);
 
 	input	  clock;
-	input	[5:0]  data;
+	input	[4:0]  data;
 	input	[10:0]  rdaddress;
 	input	[10:0]  wraddress;
 	input	  wren;
-	output	[5:0]  q;
+	output	[4:0]  q;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
@@ -60,8 +60,8 @@ module board (
 // synopsys translate_on
 `endif
 
-	wire [5:0] sub_wire0;
-	wire [5:0] q = sub_wire0[5:0];
+	wire [4:0] sub_wire0;
+	wire [4:0] q = sub_wire0[4:0];
 
 	altsyncram	altsyncram_component (
 				.address_a (wraddress),
@@ -81,7 +81,7 @@ module board (
 				.clocken1 (1'b1),
 				.clocken2 (1'b1),
 				.clocken3 (1'b1),
-				.data_b ({6{1'b1}}),
+				.data_b ({5{1'b1}}),
 				.eccstatus (),
 				.q_a (),
 				.rden_a (1'b1),
@@ -105,8 +105,8 @@ module board (
 		altsyncram_component.read_during_write_mode_mixed_ports = "OLD_DATA",
 		altsyncram_component.widthad_a = 11,
 		altsyncram_component.widthad_b = 11,
-		altsyncram_component.width_a = 6,
-		altsyncram_component.width_b = 6,
+		altsyncram_component.width_a = 5,
+		altsyncram_component.width_b = 5,
 		altsyncram_component.width_byteena_a = 1;
 
 
@@ -145,7 +145,7 @@ endmodule
 // Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "0"
 // Retrieval info: PRIVATE: JTAG_ID STRING "NONE"
 // Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
-// Retrieval info: PRIVATE: MEMSIZE NUMERIC "7680"
+// Retrieval info: PRIVATE: MEMSIZE NUMERIC "6400"
 // Retrieval info: PRIVATE: MEM_IN_BITS NUMERIC "0"
 // Retrieval info: PRIVATE: MIFfilename STRING "board.mif"
 // Retrieval info: PRIVATE: OPERATION_MODE NUMERIC "2"
@@ -165,10 +165,10 @@ endmodule
 // Retrieval info: PRIVATE: USE_DIFF_CLKEN NUMERIC "0"
 // Retrieval info: PRIVATE: UseDPRAM NUMERIC "1"
 // Retrieval info: PRIVATE: VarWidth NUMERIC "0"
-// Retrieval info: PRIVATE: WIDTH_READ_A NUMERIC "6"
-// Retrieval info: PRIVATE: WIDTH_READ_B NUMERIC "6"
-// Retrieval info: PRIVATE: WIDTH_WRITE_A NUMERIC "6"
-// Retrieval info: PRIVATE: WIDTH_WRITE_B NUMERIC "6"
+// Retrieval info: PRIVATE: WIDTH_READ_A NUMERIC "5"
+// Retrieval info: PRIVATE: WIDTH_READ_B NUMERIC "5"
+// Retrieval info: PRIVATE: WIDTH_WRITE_A NUMERIC "5"
+// Retrieval info: PRIVATE: WIDTH_WRITE_B NUMERIC "5"
 // Retrieval info: PRIVATE: WRADDR_ACLR_B NUMERIC "0"
 // Retrieval info: PRIVATE: WRADDR_REG_B NUMERIC "0"
 // Retrieval info: PRIVATE: WRCTRL_ACLR_B NUMERIC "0"
@@ -192,21 +192,21 @@ endmodule
 // Retrieval info: CONSTANT: READ_DURING_WRITE_MODE_MIXED_PORTS STRING "OLD_DATA"
 // Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "11"
 // Retrieval info: CONSTANT: WIDTHAD_B NUMERIC "11"
-// Retrieval info: CONSTANT: WIDTH_A NUMERIC "6"
-// Retrieval info: CONSTANT: WIDTH_B NUMERIC "6"
+// Retrieval info: CONSTANT: WIDTH_A NUMERIC "5"
+// Retrieval info: CONSTANT: WIDTH_B NUMERIC "5"
 // Retrieval info: CONSTANT: WIDTH_BYTEENA_A NUMERIC "1"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT VCC "clock"
-// Retrieval info: USED_PORT: data 0 0 6 0 INPUT NODEFVAL "data[5..0]"
-// Retrieval info: USED_PORT: q 0 0 6 0 OUTPUT NODEFVAL "q[5..0]"
+// Retrieval info: USED_PORT: data 0 0 5 0 INPUT NODEFVAL "data[4..0]"
+// Retrieval info: USED_PORT: q 0 0 5 0 OUTPUT NODEFVAL "q[4..0]"
 // Retrieval info: USED_PORT: rdaddress 0 0 11 0 INPUT NODEFVAL "rdaddress[10..0]"
 // Retrieval info: USED_PORT: wraddress 0 0 11 0 INPUT NODEFVAL "wraddress[10..0]"
 // Retrieval info: USED_PORT: wren 0 0 0 0 INPUT GND "wren"
 // Retrieval info: CONNECT: @address_a 0 0 11 0 wraddress 0 0 11 0
 // Retrieval info: CONNECT: @address_b 0 0 11 0 rdaddress 0 0 11 0
 // Retrieval info: CONNECT: @clock0 0 0 0 0 clock 0 0 0 0
-// Retrieval info: CONNECT: @data_a 0 0 6 0 data 0 0 6 0
+// Retrieval info: CONNECT: @data_a 0 0 5 0 data 0 0 5 0
 // Retrieval info: CONNECT: @wren_a 0 0 0 0 wren 0 0 0 0
-// Retrieval info: CONNECT: q 0 0 6 0 @q_b 0 0 6 0
+// Retrieval info: CONNECT: q 0 0 5 0 @q_b 0 0 5 0
 // Retrieval info: GEN_FILE: TYPE_NORMAL board.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL board.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL board.cmp FALSE
