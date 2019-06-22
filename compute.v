@@ -53,7 +53,7 @@ module compute(clock ,reset, display_col, display_row, color, operation, data);
         .clock(clock),
         .data(data),
         .rdaddress(board_read_address),
-        .wraddress(operation[15:0]),
+        .wraddress(operation[10:0]),
         .wren(wren_board),
         .q(board_read_data)
     );
@@ -62,7 +62,7 @@ module compute(clock ,reset, display_col, display_row, color, operation, data);
         .clock(clock),
         .data(data),
         .rdaddress(sprite_read_address),
-        .wraddress(operation[15:0]),
+        .wraddress(operation[12:0]),
         .wren(wren_sprites),
         .q(sprite_read_data)
     );
@@ -71,7 +71,7 @@ module compute(clock ,reset, display_col, display_row, color, operation, data);
         .clock(clock),
         .data(data),
         .rdaddress(sprite_read_data),
-        .wraddress(operation[15:0]),
+        .wraddress(operation[5:0]),
         .wren(wren_colors),
         .q(color)
     );

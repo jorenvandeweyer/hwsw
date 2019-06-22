@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.m": "matlab",
+        "*.dtl": "django-html",
+        "system.h": "c"
+    }
+}

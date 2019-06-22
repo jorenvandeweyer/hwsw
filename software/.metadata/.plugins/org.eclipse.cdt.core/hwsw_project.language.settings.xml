@@ -1395,7 +1395,9 @@
 						<entry kind="includePath" name="/hwsw_project_bsp/HAL/inc">
 							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 						</entry>
-						<entry kind="includePath" name="C:/repos/HWSW/project/software/hwsw_project_bsp"/>
+						<entry kind="includePath" name="/hwsw_project_bsp">
+							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+						</entry>
 						<entry kind="includePath" name="/hwsw_project_bsp/drivers/inc">
 							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 						</entry>
@@ -1993,7 +1995,9 @@
 						<entry kind="includePath" name="/hwsw_project_bsp/HAL/inc">
 							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 						</entry>
-						<entry kind="includePath" name="C:/repos/HWSW/project/software/hwsw_project_bsp"/>
+						<entry kind="includePath" name="/hwsw_project_bsp">
+							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+						</entry>
 						<entry kind="includePath" name="/hwsw_project_bsp/drivers/inc">
 							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 						</entry>
@@ -2175,7 +2179,9 @@
 						<entry kind="includePath" name="/hwsw_project_bsp/HAL/inc">
 							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 						</entry>
-						<entry kind="includePath" name="C:/repos/HWSW/project/software/hwsw_project_bsp"/>
+						<entry kind="includePath" name="/hwsw_project_bsp">
+							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+						</entry>
 						<entry kind="includePath" name="/hwsw_project_bsp/drivers/inc">
 							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 						</entry>
@@ -2396,7 +2402,9 @@
 						<entry kind="includePath" name="/hwsw_project_bsp/HAL/inc">
 							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 						</entry>
-						<entry kind="includePath" name="C:/repos/HWSW/project/software/hwsw_project_bsp"/>
+						<entry kind="includePath" name="/hwsw_project_bsp">
+							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+						</entry>
 						<entry kind="includePath" name="/hwsw_project_bsp/drivers/inc">
 							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 						</entry>
@@ -2515,7 +2523,9 @@
 						<entry kind="includePath" name="/hwsw_project_bsp/HAL/inc">
 							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 						</entry>
-						<entry kind="includePath" name="C:/repos/HWSW/project/software/hwsw_project_bsp"/>
+						<entry kind="includePath" name="/hwsw_project_bsp">
+							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
+						</entry>
 						<entry kind="includePath" name="/hwsw_project_bsp/drivers/inc">
 							<flag value="VALUE_WORKSPACE_PATH|RESOLVED"/>
 						</entry>

@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include "alt_types.h"
+#include "system.h"
+#include "altera_avalon_pio_regs.h"
+
+#define OP_DEF 0x00000000
+#define OP_BOARD 0x00010000
+#define OP_SPRITE 0x00020000
+#define OP_COLOR 0x00030000
+
+#define SPRITE_SIZE 128//256
+
+void wr(alt_u32 op, int data){
+  IOWR_ALTERA_AVALON_PIO_DATA(OPERATION_BASE, op);
+  IOWR_ALTERA_AVALON_PIO_DATA(DATA_BASE, data);
+  IOWR_ALTERA_AVALON_PIO_DATA(OPERATION_BASE, OP_DEF);
+}
+
+/**
+ * write to color
+ */
+void wc(int offset, int data){
+  wr(OP_COLOR | offset, data);
+}
+
+/**
+ * write to sprites
+ */
+void ws(int offset, int data){
+  wr(OP_SPRITE | offset, data);
+}
+
+/**
+ * write to Board
+ */
+void wb(int offset, int data){
+  wr(OP_BOARD | offset, data);
+}
+
+int main() {
+  //alt_u32 value;
+
+  //printf("Reset Colors...\n");
+  for (int i = 0x00000000; i < 0x00000040; i++){
+    wc(i, 0x000000);
+  }
+
+  //printf("Reset Sprites...\n");
+  for (int i = 0x00000000; i < 0x00002000; i++){
+	  ws(i, 0);
+  }
+
+  for (int i = 0; i < 1280; i++){
+     wb(i, 0);
+  }
+  //wb((alt_u32) 3, (alt_u32) 1);
+  /*for (int i = 0; i < 64; i++){
+    wc(i, 0x000000);
+  }
+
+  printf("Reset Sprites...\n");
+  for (int i = 0; i < 8192; i++){
+    ws(i, 0);
+  }
+
+  printf("Reset Board..\n");
+  for (int i = 0; i < 1280; i++){
+    wb(i, 1);
+  }*/
+
+  //printf("Init Colors...\n");
+  wc(1, 0xffffff);
+  wc(2, 0xff0000);
+  wc(3, 0x0000ff);
+
+  for (alt_u32 i = 0; i <= 4; i++){
+    alt_u32 start = SPRITE_SIZE * i;
+    for (alt_u32 j = start; j < start + SPRITE_SIZE; j++){
+      if (i == (alt_u32) 0) ws(j, (alt_u32) 0);
+      if (i == (alt_u32) 1) ws(j, (alt_u32) 1);
+      if (i == (alt_u32) 2) ws(j, (alt_u32) 1);
+      if (i == (alt_u32) 3) ws(j, (alt_u32) 2);
+      if (i == (alt_u32) 4) ws(j, (alt_u32) 3);
+    }
+  }
+
+  // Init board
+  int sprite = 3;
+  for (int col = 0; col < 40; col++){
+	  wb(col, sprite);
+  }
+
+  for (int col = 0; col < 40; col++){
+	  wb(col + 30 * 80, sprite);
+  }
+
+  for (int row = 0; row < 32; row++){
+    wb(row * 80, sprite);
+  }
+
+  for (int row = 0; row < 32; row++){
+    wb(39 + row * 80, sprite);
+  }
+
+  /*printf("Init Board...\n");
+  for (int col = 0; col < 80; col++){
+    for (int row = 0; row < 64; row++){
+      //if (row == 0 || row == 63 || col == 0 || col == 79) wb(col + row * 80, 4);
+      //if (col == 0) wb(col + row * 80, 4);
+    	if (row == 0) wb(col, 4);
+    }
+  }*/
+
+  //printf("SNAKE! \n");
+
+  //wr(OP_COLOR, 0x8c8e91);
+
+  /*while(1) {
+    value = IORD_ALTERA_AVALON_PIO_DATA(0x00021090);
+    IOWR_ALTERA_AVALON_PIO_DATA(0x00021080, value);
+  }*/
+
+  return 0;
+}
+
+

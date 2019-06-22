@@ -1,0 +1,298 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "alt_types.h"
+#include "system.h"
+#include "altera_avalon_pio_regs.h"
+
+#define N 30 // num rows
+#define M 38 // num cols
+
+#define OP_DEF 0x00000000
+#define OP_BOARD 0x00010000
+#define OP_SPRITE 0x00020000
+#define OP_COLOR 0x00030000
+
+#define SPRITE_SIZE 256
+
+#define LEFT_KEY 7
+#define RIGHT_KEY 11
+
+alt_u32 prev = 0;
+alt_u32 value = 1;
+
+void wr(alt_u32 op, int data){
+  IOWR_ALTERA_AVALON_PIO_DATA(OPERATION_BASE, op);
+  IOWR_ALTERA_AVALON_PIO_DATA(DATA_BASE, data);
+  IOWR_ALTERA_AVALON_PIO_DATA(OPERATION_BASE, OP_DEF);
+}
+
+/**
+ * write to color
+ */
+void wc(int offset, int data){
+  wr(OP_COLOR | offset, data);
+}
+
+/**
+ * write to sprites
+ */
+void ws(int offset, int data){
+  wr(OP_SPRITE | offset, data);
+}
+
+/**
+ * write to Board
+ */
+void wb(int offset, int data){
+  wr(OP_BOARD | offset, data);
+}
+
+/**
+ * reead the Keys
+ */
+void rd(){
+    alt_u32 temp = IORD_ALTERA_AVALON_PIO_DATA(BUTTONS_BASE);
+
+    if (temp != prev){
+        value = temp;
+        prev = temp;
+    }else value = 1;
+}
+
+enum Direction{North, East, South, West} direction;
+
+int Field[N][M];
+int x, y;
+int gy, head, tail;
+int game;
+
+int food, a, b;
+int score;
+int speed;
+
+void clearBoard(){
+    for (int i = 0; i < 1280; i++){
+        wb(i, 0);
+    }
+}
+
+void initBoard(){
+    int sprite = 1;
+    for (int col = 0; col < 40; col++){
+	    wb(col, sprite);
+    }
+
+    for (int col = 0; col < 40; col++){
+	    wb(col + 30 * 80, sprite);
+    }
+
+    for (int row = 0; row < 32; row++){
+        wb(row * 80, sprite);
+    }
+
+    for (int row = 0; row < 32; row++){
+        wb(39 + row * 80, sprite);
+    }
+}
+
+void init(){
+    for (int i = 0x00000000; i < 0x00000040; i++){
+        wc(i, 0x000000);
+    }
+    
+    for (int i = 0x00000000; i < 0x00002000; i++){
+	    ws(i, 0);
+    }
+
+    clearBoard();
+
+    wc(1, 0xffffff);
+    wc(2, 0xff0000);
+    wc(3, 0x0000ff);
+
+    for (int i = 0; i <= 4; i++){
+        int start = SPRITE_SIZE * i;
+        for (int j = start; j < start + SPRITE_SIZE; j++){
+            if (i == 0) ws(j, 0);
+            if (i == 1) ws(j, 1);
+            if (i == 2) ws(j, 1);
+            if (i == 3) ws(j, 2);
+            if (i == 4) ws(j, 3);
+        }
+    }
+
+    initBoard();
+}
+
+void snakeInit(){
+    for (int i = 0; i < N; i++){
+        for (int j = 0; j < M; j++){
+            Field[i][j] = 0;
+        }
+    }
+
+    x = N / 2;
+    y = M / 2;
+
+    gy = y;
+    head = 5;
+    tail = 1;
+    game = 0; // 0 = running, 1 = end game
+    food = 0;
+    
+    direction = East;
+
+    score = 0;
+    speed = 99;
+
+    for (int i = 0; i < head; i++){
+        gy++;
+        Field[x][gy - head] = i + 1;
+    }
+}
+
+/* 
+    CONDITIONS:
+
+    -> Field[i][j] == 0 => empty square
+    -> Field[i][j] > 0 && Field[i][j] != head => body
+    -> Field[i][j] == head => head
+    -> Field[i][j] == -1 => food
+*/
+void show(){
+    clearBoard();
+    initBoard();
+
+    for (int i = 0; i < N; i++){
+        for (int j = 0; j < M; j++){
+            int pos = (i + 1) * 80 + (j + 1);
+            if (Field[i][j] == 0) wb(pos, 0); // empty square
+            if (Field[i][j] > 0 || Field[i][j] == head) wb(pos, 1); // snake
+            if (Field[i][j] == -1) wb(pos, 3); // food
+        }
+    }
+}
+
+void random(){
+    srand(time(0));
+    a = 1 + rand() % (N - 2); // random num 1->18
+    b = 1 + rand() % (M - 2);
+
+    if (food == 0 && Field[a][b] == 0){ // als er geen eten is
+        Field[a][b] = -1;
+        food = 1;
+
+        if (speed > 10 && score != 0) speed -= 5;
+    }
+}
+
+void gameOver(){
+    /* 
+        Show game over + score
+    */
+    clearBoard();
+
+    /*while (1){
+        rd();
+        if (value == LEFT_KEY){
+            snakeInit();
+            break;
+        }else if (value == RIGHT_KEY){
+            game = 1;
+            break;
+        }
+    }*/
+
+    /*
+        Clear screen    
+    */
+}
+
+void checkGameOver(){
+    if (Field[x][y] != 0 && Field[x][y] != -1) gameOver();
+}
+
+void checkFood(){
+    if (Field[x][y] == -1){
+        food = 0;
+        score += 5;
+        tail -= 2;
+    }
+}
+
+void updateHead(){
+    head++;
+    Field[x][y] = head;
+}
+
+void movement(){
+    rd();
+
+    if (value == LEFT_KEY){
+        switch (direction){
+            case East: direction = North; break;
+            case North: direction = West; break;
+            case West: direction = South; break;
+            default: direction = East; break;
+        }
+    }else if (value == RIGHT_KEY){
+        switch (direction){
+            case East: direction = South; break;
+            case South: direction = West; break;
+            case West: direction = North; break;
+            default: direction = East; break;
+        }
+    }
+
+    switch (direction){
+        case East:
+            y++;
+            if (y == M) y = 0; break;
+        case West: 
+            y--;
+            if (y == -1) y = M - 1; break;
+        case South:
+            x++;
+            if (x == N) x = 0; break;
+        case North: 
+            x--;
+            if (x == -1) x = N - 1; break;
+    }
+
+    checkGameOver();
+    checkFood();
+    updateHead();
+}
+
+void tailRemove(){
+    for (int i = 0; i < N; i++){
+        for (int j = 0; j < M; j++){
+            if (Field[i][j] == tail){
+                Field[i][j] = 0;
+            }
+        }
+    }
+
+    tail++;
+}
+
+void delay(int millis){
+  clock_t start_time = clock();
+  while (clock() < start_time + millis);
+}
+
+void main(){
+    init();
+    snakeInit();
+    while (game == 0){
+        show();
+        random();
+        movement();
+        tailRemove();
+        delay(speed);
+    }
+}
+
+
+

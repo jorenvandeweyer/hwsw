@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include "alt_types.h"
+#include "system.h"
+#include "altera_avalon_pio_regs.h"
+
+#define OP_DEF 0x00000000
+#define OP_BOARD 0x00010000
+#define OP_SPRITE 0x00020000
+#define OP_COLOR 0x00030000
+
+void wr(int op, int data){
+  IOWR_ALTERA_AVALON_PIO_DATA(OPERATION_BASE, op);
+  IOWR_ALTERA_AVALON_PIO_DATA(DATA_BASE, data);
+  IOWR_ALTERA_AVALON_PIO_DATA(OPERATION_BASE, OP_DEF);
+}
+
+int main() {
+  //alt_u32 value;
+
+  printf("Hello FPGA! \n");
+
+  wr(OP_COLOR, 0xffffff);
+
+  /*while(1) {
+    value = IORD_ALTERA_AVALON_PIO_DATA(0x00021090);
+    IOWR_ALTERA_AVALON_PIO_DATA(0x00021080, value);
+  }*/
+
+  return 0;
+}
+
+

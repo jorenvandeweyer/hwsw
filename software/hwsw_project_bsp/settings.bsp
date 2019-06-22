@@ -2,9 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>19-Jun-2019 13:59:40</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1560945580303</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>Z:\repos\HWSW\project\software\hwsw_project_bsp</BspGeneratedLocation>
+        <BspGeneratedTimeStamp>22-Jun-2019 12:47:42</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1561200462309</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>C:\Users\alles\OneDrive\Documents\SCHOOL\HWSW\FinalProject\hwsw\software\hwsw_project_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\nios.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
@@ -875,6 +875,30 @@
                 <Group>none</Group>
         </Setting>
         <Setting>
+                <SettingName>altera_avalon_uart_driver.enable_small_driver</SettingName>
+                <Identifier>ALTERA_AVALON_UART_SMALL</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>false</Value>
+                <DefaultValue>false</DefaultValue>
+                <DestinationFile>public_mk_define</DestinationFile>
+                <Description>Small-footprint (polled mode) driver</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
+                <SettingName>altera_avalon_uart_driver.enable_ioctl</SettingName>
+                <Identifier>ALTERA_AVALON_UART_USE_IOCTL</Identifier>
+                <Type>BooleanDefineOnly</Type>
+                <Value>false</Value>
+                <DefaultValue>false</DefaultValue>
+                <DestinationFile>public_mk_define</DestinationFile>
+                <Description>Enable driver ioctl() support. This feature is not compatible with the 'small' driver; ioctl() support will not be compiled if either the UART 'enable_small_driver' or HAL 'enable_reduced_device_drivers' settings are enabled.</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </Setting>
+        <Setting>
                 <SettingName>altera_avalon_jtag_uart_driver.enable_small_driver</SettingName>
                 <Identifier>ALTERA_AVALON_JTAG_UART_SMALL</Identifier>
                 <Type>BooleanDefineOnly</Type>
@@ -905,8 +929,14 @@
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>timer_0</slaveDescriptor>
+                <slaveDescriptor>uart_0</slaveDescriptor>
                 <addressRange>0x00021040 - 0x0002105F</addressRange>
+                <addressSpan>32</addressSpan>
+                <attributes>printable</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>timer_0</slaveDescriptor>
+                <addressRange>0x00021060 - 0x0002107F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
@@ -923,8 +953,26 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>buttons</slaveDescriptor>
+                <addressRange>0x000210A0 - 0x000210AF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>operation</slaveDescriptor>
+                <addressRange>0x000210B0 - 0x000210BF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>data</slaveDescriptor>
+                <addressRange>0x000210C0 - 0x000210CF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x000210A8 - 0x000210AF</addressRange>
+                <addressRange>0x000210D8 - 0x000210DF</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>

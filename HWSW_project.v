@@ -108,7 +108,7 @@ wire [31:0] operation, data;
 nios u0 (
  .uart_0_external_rxd (GPIO[0]), // uart_0_external.rxd
  .uart_0_external_txd (GPIO[1]), // .txd
- .resetn_reset_n (SW[9]), // reset.reset_n
+ .resetn_reset_n (!SW[9]), // reset.reset_n
  .clk_clk (CLOCK_50), // clk.clk
  .leds_export (LEDR[7:0]), // leds.export
  .switches_export (SW[7:0]), // switches.export
